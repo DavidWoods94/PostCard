@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="David Woods">
+
+    <title>Create a Postcard</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link href="css/grayscale.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    
+    <link rel="stylesheet" href="css/styles.css">
+	
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+
+    <!-- Intro Header -->
+    
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <body onload="initialize();">
+	<div class="container">    
+		<div class="row">
+			<div id="formParent" class="col-md-6 col-md-offset-3">
+				<form id="form" class="form-horizontal" method="POST" action="javascript:submit()">
+                    <div id = "intro">
+                        <h1>Welcome to Create a postcard!</h1>
+                        <p>We will help you create a postcard in THREE easy steps</p>
+                    </div>
+                     <div class="form-group">
+                        <label class="sr-only" for="image">Original Image</label>
+                         <div id = "no">
+                             <h3>Step 1: Upload a picture</h3>
+                        <center><table>
+                            <tr><td><img id="image" name="image" src="Example.jpg" height="480" width="672"></td></tr>
+                            </table></center>
+                             </div>
+                        <input type="file" id="upload" name="upload" accept="image/*">
+                    </div>
+                    
+                    <h3>Step 2: Edit your image</h3>
+                     
+                    <div class="form-group">
+                        <h3>Filters</h3>
+                        <div class="checkbox-inline">
+                            <label for="myNostalgia">My Nostalgia</label>
+                            <input type="radio" name="filter" id="myNostalgia" value="myNostalgia" onclick="applyMyNostalgiaFilter();">
+                        </div>
+                        
+                        <div class="checkbox-inline">
+                            <label for="grayscale">Grayscale</label>
+                            <input type="radio" name="filter" id="grayscale" value="grayscale" onclick="applyGrayscaleFilter();">
+                        </div>
+                        
+                        <div class="checkbox-inline">
+                            <label for="grayscale">Sepia</label>
+                            <input type="radio" name="filter" id="sepia" value="sepia" onclick="applySepiaFilter();">
+                        </div>
+                        
+                        <div class="checkbox-inline">
+                            <label for="grayscale">Sad Puppy</label>
+                            <input type="radio" name="filter" id="hue" value="hue" onclick="applyHueFilter();">
+                        </div>
+                        
+                        <div class="checkbox-inline">
+                            <label for="grayscale">Invert</label>
+                            <input type="radio" name="filter" id="invert" value="invert" onclick="applyInvertFilter();">
+                        </div>
+                        
+                        <div class="checkbox-inline">
+                            <label for="grayscale">Blur</label>
+                            <input type="radio" name="filter" id="blur" value="blur" onclick="applyBlurFilter();">
+                        </div>
+                        
+                        <div class="checkbox-inline">
+                            <label for="original">Revert to Original</label>
+                            <input type="radio" name="filter" id="lomo" value="lomo" onclick="revertToOriginal();">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="brightness">Brightness</label>
+                        <input type="range" id="brightness" name="brightness" oninput="setBrightness((this.valueAsNumber+100)/100);" value="0" step="1" min="-100" max="100">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="contrast">Contrast</label>
+                                <input type="range" id="contrast" name="contrast" oninput="setContrast(this.valueAsNumber+100);" value="0" step="1" min="-100" max="100">
+                            </div>     
+                        </div>
+                    </div>
+                    <h3>Step 3: Add text</h3>
+                    <div class="form-group">
+                        <label for="title" class="control-label col-xs-1">Title</label>
+                        <div class="col-xs-11">
+                            <div class="input-group">
+                        
+                                <div class="col-lg-6">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Font <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+            <style>
+                li{color: black;
+            </style>
+            <li><input st type = "radio" id = "cs" value = "changefont" onclick = "font = 1"> Comic Sans</li>
+          <li><input type = "radio" id = "cs" value = "changefont" onclick = "font = 2"> Times New Roman</li>
+          <li><input type = "radio" id = "cs" value = "changefont" onclick = "font = 3"> Georgia</li>
+            <li><input type = "radio" id = "cs" value = "changefont" onclick = "font = 4"> Impact</li>
+            <li><input type = "radio" id = "cs" value = "changefont" onclick = "font = 5"> Arial</li>
+                
+        </ul>
+      </div><!-- /btn-group -->
+     <input type="text" class="form-control" id="title" name="title" 
+                            maxlength="25" size="25" value="" required placeholder="Summer Vacation">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+                            </div>
+                        </div>
+                    </div>
+                      
+                    <div class="form-group">
+                        <label for="text" class="control-label col-xs-1">Text</label>
+                         <div class="col-xs-11">
+                            <div class="input-group">
+                        
+                                <div class="col-lg-6">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Font <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li><input type = "radio" id = "cs" value = "changefont" onclick = "font2 = 1"> Comic Sans</li>
+          <li><input type = "radio" id = "cs" value = "changefont" onclick = "font2 = 2"> Times New Roman</li>
+          <li><input type = "radio" id = "cs" value = "changefont" onclick = "font2 = 3"> Georgia</li>
+            <li><input type = "radio" id = "cs" value = "changefont" onclick = "font2 = 4"> Impact</li>
+            <li><input type = "radio" id = "cs" value = "changefont" onclick = "font2 = 5"> Arial</li>
+        </ul>
+      </div><!-- /btn-group -->
+     <textarea class="form-control" id="text" name="text" oninput="applyText()" maxlength="140" placeholder="140 characters" required></textarea>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="color" class="control-label col-xs-1">Color (optional)</label>
+                         <div class="col-xs-11">
+                            <div class="input-group">
+                        
+                                <div class="col-lg-6">
+    <div class="input-group">
+      
+     <input type="text" class="form-control" id="color" name="color" 
+                            maxlength="7" size="25" value="" placeholder="#ffffff">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                   
+                    
+                    <input type="submit" value="Create my postcard!" class="btn btn-primary col-md-offset-1">
+                   <a href = "#"> <input type="button" id="resetForm" value="Start over!" class="btn btn-default">  </a>
+				</form>
+			</div>
+		</div>
+	</div>
+    </section>
+
+   
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="functions.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/grayscale.js"></script>
+
+</body>
+
+</html>

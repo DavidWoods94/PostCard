@@ -1,0 +1,26 @@
+
+
+#ttl {
+    position: absolute;
+    width: 660px;
+    padding-left: 60px;
+    text-shadow:  2px 2px #000000;
+}
+
+#txt {
+    position: absolute;
+    align-content: center;
+    left: 40px;
+    right: px;
+    top: 85%;
+    width: 660px;
+}
+
+img {
+    z-index: -100;
+}
+
+p, h2 {
+    z-index: 100;
+    
+}
